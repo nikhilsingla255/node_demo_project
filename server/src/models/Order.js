@@ -9,6 +9,6 @@ const orderSchema = new mongoose.Schema({
     status: { type: String, enum: ['CREATED', 'CANCELLED', 'COMPLETED'], default: 'CREATED' },
     customerId: { type: mongoose.Schema.Types.Number, ref: "User" },
     orderDate: Date
-}, { timestamps: true });
+}, { timestamps: true, _id: false });
 
 module.exports = mongoose.model("Order", orderSchema);
