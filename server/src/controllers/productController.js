@@ -35,14 +35,14 @@ exports.getProducts = async (req, res) => {
   res.json(products);
 };
 
-exports.updateProducts = async (req, res) => {
+exports.updateProduct = async (req, res) => {
   const product = await Product.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
   res.json(product);
 };
 
-exports.deleteProducts = async (req, res) => {
+exports.deleteProduct = async (req, res) => {
   await Product.findByIdAndDelete(req.params.id);
   res.json({ message: "product deleted" });
 };
