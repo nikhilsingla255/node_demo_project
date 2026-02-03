@@ -1,0 +1,39 @@
+const jwt = require("jsonwebtoken");
+const User = require("../models/User");
+
+const generateToken = (userId) => {
+  return jwt.sign(
+    {
+      id: userId,
+    },
+    process.env.JWT_SECRET,
+  );
+};
+
+// Register User
+exports.register = async (req, res) => {
+  const user = await User.create(req.body);
+  const token = generateToken(user._id);
+  res.status(201).json({
+    token,
+    user,
+  });
+};
+
+//User login
+exports.login = async (req, res) => {
+  const { email, password } = req.body;
+  const user = await User.findOne(email).select("password");
+  if (!user || !(await User.comparePassword(password))) {
+    return res.status(401).json({ message: "Invalid credentials" });
+  }
+  const token = generateToken(user._id);
+  res.json({
+    token,
+    user: {
+      userId: user._id,
+      email: user.email,
+      role: user.role,
+    },
+  });
+};
