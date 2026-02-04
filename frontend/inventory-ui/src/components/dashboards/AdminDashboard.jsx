@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import api from "../../api/api";
 import Navbar from "../Navbar";
+import ProductTable from "../admin/ProductTable";
 
 export default function AdminDashboard() {
     const [products,setProducts] = useState([]);
