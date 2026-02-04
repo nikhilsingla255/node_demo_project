@@ -1,5 +1,5 @@
-import { useContext, useState } from "react"
-import { AuthContext } from "../../auth/authContext"
+import { useContext, useState } from "react";
+import { AuthContext } from "../../auth/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../../auth/AuthService";
 
@@ -15,6 +15,7 @@ export default function Login() {
         const res = await loginUser(form);
         //here we are calling usecontext and setting token and user info in local storage
         login(res.data.token, res.data.user)
+        navigate("/dashboard")
     }
     return (
         <div className="container mt-5" style={{ maxWidth: "400px" }}>

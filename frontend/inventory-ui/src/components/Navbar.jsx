@@ -1,5 +1,9 @@
+import { useContext } from "react"
+import { AuthContext } from "../auth/AuthContext"
+
 export default function Navbar() {
 
+    const {user,logout} = useContext(AuthContext);
     return(
         <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
            <span className="navbar-brand">Inventory Management System</span>

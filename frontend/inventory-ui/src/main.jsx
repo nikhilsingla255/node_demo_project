@@ -5,7 +5,7 @@ import App from './App.jsx'
 //bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
 //auth provider
-import { AuthProvider } from './auth/authContext.jsx';
+import { AuthProvider } from './auth/AuthContext.jsx';
 
 createRoot(document.getElementById('root')).render(
   // <StrictMode>
