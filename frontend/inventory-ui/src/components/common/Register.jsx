@@ -1,39 +1,68 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { registerUser } from "../../auth/AuthService";
 
 export default function Register() {
+    const [form, setForm] = useState({});
+    const navigate = useNavigate();
+    const [confirm,setConfirm]= useState("");
+
+    const submit = async (e) => {
+        e.preventDefault();
+        if(form.password == confirm){
+            await registerUser(form);
+            alert("Registration successful");
+        } else {
+            alert("registration unsuccessful as passwords does not match")
+        }
+        navigate('/login');
+    }
 
     return (
-        <div className="container mt-5">
+        <div className="container mt-5" style={{ maxWidth: "600px" }}>
             <div className="card p-4 shadow">
                 <div className="card-header bg-primary text-light">
                     <h2>Register</h2>
                 </div>
                 <div className="card-body">
-                    <form>
-                        <div>
+                    <form onSubmit={submit}>
+                        <div className="form-group">
                             <input className="form-control"
-                            placeholder="First Name"/>
+                                placeholder="First Name" 
+                                onChange={(e)=>setForm({...form,firstName:e.target.value})}
+                                />
                         </div>
-                         <div>
+                        <div className="form-group" style={{ marginTop: "3%" }}>
                             <input className="form-control"
-                            placeholder="Last Name"/>
+                                placeholder="Last Name" 
+                                onChange={(e)=>setForm({...form,lastName:e.target.value})}
+                                />
                         </div>
-                         <div>
+                        <div className="form-group" style={{ marginTop: "3%" }}>
                             <input className="form-control"
-                            placeholder="Address"/>
+                                placeholder="Address" 
+                                onChange={(e)=>setForm({...form,address:e.target.value})}
+                                />
                         </div>
-                         <div>
+                        <div className="form-group" style={{ marginTop: "3%" }}>
                             <input className="form-control"
-                            placeholder="Email" type="email"/>
+                                placeholder="Email" type="email" 
+                                onChange={(e)=>setForm({...form, email:e.target.value})}
+                                />
                         </div>
-                        <div>
+                        <div className="form-group" style={{ marginTop: "3%" }}>
                             <input className="form-control"
-                            placeholder="Password" type="password"/>
+                                placeholder="Password" type="password" 
+                                onChange={(e)=>setForm({...form,password:e.target.value})}
+                                />
                         </div>
-                        <div>
+                        <div className="form-group" style={{ marginTop: "3%" }}>
                             <input className="form-control"
-                            placeholder="Confirm Password" type="password"/>
+                                placeholder="Confirm Password" type="password" 
+                                onChange={(e)=>setConfirm(e.target.value)}
+                                />
                         </div>
-                        <div>
+                        <div className="form-group" style={{ marginTop: "3%" }}>
                             <button className="btn btn-success" type="submit">Register</button>
                         </div>
                     </form>

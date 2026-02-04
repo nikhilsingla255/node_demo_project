@@ -4,9 +4,14 @@ import './index.css'
 import App from './App.jsx'
 //bootstrap
 import "bootstrap/dist/css/bootstrap.min.css";
+//auth provider
+import { AuthProvider } from './auth/authContext.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
+  // <StrictMode>
+  //   <App />
+  // </StrictMode>,
+  <AuthProvider>
     <App />
-  </StrictMode>,
+  </AuthProvider>
 )
